@@ -1,5 +1,10 @@
 import React from 'react';
 
+type AuthProps = {
+    updateToken(token: string): void,
+    clickLogout(): void
+}
+
 type AuthState = {
     signup: boolean,
     email: string,
@@ -13,7 +18,7 @@ type AuthState = {
     token: string
 }
 
-export class Auth extends React.Component<{}, AuthState> {
+export default class Auth extends React.Component<AuthProps, AuthState> {
 
         state = {
             signup: true,
@@ -52,7 +57,7 @@ export class Auth extends React.Component<{}, AuthState> {
 
             const json = await res.json();
             const token = json.sessionToken
-            localStorage.setItem('SessionToken', token)
+            this.props.updateToken(token);
 
             if (json.errors) {
                 let errMsg = json.errors[0].message
@@ -88,7 +93,7 @@ export class Auth extends React.Component<{}, AuthState> {
             const json = await res.json();
             console.log(json)
             const token = json.sessionToken
-            localStorage.setItem('SessionToken', token)
+            this.props.updateToken(token);
 
             if (json.errors) {
                 let errMsg = json.errors[0].message
@@ -101,19 +106,23 @@ export class Auth extends React.Component<{}, AuthState> {
     }
 
     handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
-        const emailInput = document.getElementById('email');
-        this.setState({
-            email: e.target.value,
-            // emailValid: emailInput.checkValidity()
-        })
+        const emailInput = document.getElementById('email') as HTMLInputElement;
+        if (emailInput != null) {
+            this.setState({
+                email: e.target.value,
+                emailValid: emailInput.checkValidity()
+            })
+        }
     }
 
     handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
-        const pwInput = document.getElementById('password');
-        this.setState({
-            password: e.target.value,
-            // pwValid: pwInput.checkValidity()
-        })
+        const pwInput = document.getElementById('password') as HTMLInputElement;
+        if (pwInput != null){
+            this.setState({
+                password: e.target.value,
+                pwValid: pwInput.checkValidity()
+            })
+        }
     }
 
     render() {
