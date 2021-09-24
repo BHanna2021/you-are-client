@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default class QuoteDBSearch extends React.Component {
+type QSProps = {
+    userToken: string
+}
+
+export default class QuoteDBSearch extends React.Component<QSProps, {}> {
 
     componentDidMount() {
         console.info("QuoteSearch")

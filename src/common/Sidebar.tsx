@@ -34,8 +34,8 @@ export default class Sidebar extends React.Component<SidebarProps, {}> {
                     <Switch>
                         <Route exact path="/"><Home /></Route>
                         <Route exact path="/myjournal"><JournalHome userToken={this.props.currentToken} /></Route>
-                        <Route exact path="/myquotes"><QuoteHome /></Route>
-                        <Route exact path="/quotesearch"><QuoteDBSearch/></Route>
+                        <Route exact path="/myquotes"><QuoteHome userToken={this.props.currentToken} /></Route>
+                        <Route exact path="/quotesearch"><QuoteDBSearch userToken={this.props.currentToken} /></Route>
                     </Switch>
                 </div>
             </div>
