@@ -1,4 +1,5 @@
 import React from 'react';
+import { Table } from 'reactstrap';
 
 type QHProps = {
     userToken: string
@@ -9,7 +10,8 @@ type QHState = {
 }
 
 type Quote = {
-    quoteBody: string
+    quoteBody: string,
+    id: number
 }
 
 export default class QuoteHome extends React.Component<QHProps, QHState> {
@@ -31,22 +33,43 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
                 }
             })
             const mqjson = await res.json();
-            console.log(mqjson)
             this.setState({myQuotes: mqjson})
-            console.log(this.state.myQuotes)
         } catch (err) {
             console.log(err)
         }
     }
 
-componentDidMount() {
-    this.viewMyQuotes()
-}
+    componentDidMount() {
+        this.viewMyQuotes()
+    }
+
+    deleteQuote = async (quote: any) => {
+        const deleteURL = `http://localhost:3000/quote/${quote.id}`
+        try {
+            const byeQuote = await fetch (deleteURL, {
+                method: "DELETE",
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.props.userToken}`
+                })
+            })
+            console.log(byeQuote)
+            this.viewMyQuotes()
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     quoteMapper = (): JSX.Element[] => {
-        return this.state.myQuotes.map((quote: Quote) => {
+        return this.state.myQuotes.map((quote: Quote, index: number) => {
             return(
-                <p>{quote.quoteBody}</p>
+                    <tbody>
+                        <tr key={index}>
+                            <td>{quote.quoteBody}</td>
+                            <td><button value={quote.id}>Update</button></td>
+                            <td><button onClick={() => {this.deleteQuote(quote)}}>Delete</button></td>
+                        </tr>
+                    </tbody>
             )
         })
     }
@@ -54,9 +77,15 @@ componentDidMount() {
     render() {
         return(
             <div>
-                <p>View my quotes.  Where the fuck is this landing???</p>
+                <div>
+                    <h1><button style={{fontSize: "xx-large"}}>&#x1F49F; Add a Quote &#x1F49F;</button></h1>
+                </div>
+                <div>
+                <h1>Quotes I've added:</h1>
+                <Table>
                 {this.quoteMapper()}
-                
+                </Table>
+                </div>
             </div>
         )
     }
