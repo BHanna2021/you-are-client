@@ -1,6 +1,27 @@
 import React from 'react';
+import {
+    Modal,
+    ModalHeader,
+    ModalBody,
+} from 'reactstrap';
 
-export default class QuoteUpdater extends React.Component {
+type QUProps = {
+    toBeUpdated(quote: {}): void,
+
+}
+
+type QUState = {
+    quoteBody: string
+
+}
+
+export default class QuoteUpdater extends React.Component<QUProps, QUState> {
+    constructor(props: QUProps){
+        super(props)
+        this.state = {
+            quoteBody: this.props.quoteBody
+        }
+    }
 
 
     render() {

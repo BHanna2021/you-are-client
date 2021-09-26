@@ -35,7 +35,6 @@ export default class JournalHome extends React.Component<JHProps, JHState> {
             })
             const mjjson = await res.json();
             this.setState({myJournals: mjjson})
-            console.log(this.state.myJournals)
         } catch (err) {
             console.log(err)
         }
@@ -46,19 +45,22 @@ componentDidMount() {
 }
 
 deleteJournal = async (journal: any) => {
-    const deleteURL = `http://localhost:3000/journal/${journal.id}`
-    try {
-        const byeJournal = await fetch (deleteURL, {
-            method: "DELETE",
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.props.userToken}`
+    const confirm = prompt("Are you sure you want to delete this journal?", "Yes")
+    if (confirm) {
+        const deleteURL = `http://localhost:3000/journal/${journal.id}`
+        try {
+            const byeJournal = await fetch (deleteURL, {
+                method: "DELETE",
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.props.userToken}`
+                })
             })
-        })
-        console.log(byeJournal)
-        this.viewMyJournals()
-    } catch (err) {
-        console.log(err)
+            console.log(byeJournal)
+            this.viewMyJournals()
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 
@@ -80,9 +82,6 @@ deleteJournal = async (journal: any) => {
     render() {
         return(
             <div>
-                <div>
-                    <h1><button style={{fontSize: "xx-large"}}>&#x1F4D6; Add a Journal Entry &#x1F4D6;</button></h1>
-                </div>
                 <div>
                     <h1>My Journals:</h1>
                     <Table>

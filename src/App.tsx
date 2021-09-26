@@ -7,23 +7,33 @@ import Sidebar from './common/Sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 type AppState = {
-  sessionToken: string | null
+  sessionToken: string | null,
+  isAdmin: string | null
 }
 
 class App extends React.Component <{}, AppState> {
   state = {
-    sessionToken: ''
+    sessionToken: '',
+    isAdmin: ''
   }
 
   componentDidMount = () => {
     if (localStorage.getItem('token')) {
       this.setState({sessionToken: localStorage.getItem('token')})
     }
+    if (localStorage.getItem('admin')) {
+      this.setState({isAdmin: localStorage.getItem('admin')})
+    }
   }
 
 updateToken = (newToken: string) => {
   localStorage.setItem('token', newToken);
   this.setState({sessionToken: newToken})
+}
+
+updateAdmin = (newAdmin: string) => {
+  localStorage.setItem('admin', newAdmin);
+  this.setState({isAdmin: newAdmin})
 }
 
 clearToken = () => {
@@ -38,10 +48,10 @@ clearToken = () => {
         <div>
           <Header />
           <Router>
-            <Sidebar currentToken={this.state.sessionToken} clickLogout={this.clearToken}/>
+            <Sidebar currentToken={this.state.sessionToken} clickLogout={this.clearToken} isAdmin={this.state.isAdmin} />
           </Router>
           <Footer />
-        </div> : <Auth updateToken={this.updateToken} clickLogout={this.clearToken} />
+        </div> : <Auth updateToken={this.updateToken} clickLogout={this.clearToken} updateAdmin={this.updateAdmin} />
       )
   }
   render(){

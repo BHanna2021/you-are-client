@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Carousel,
+    UncontrolledCarousel,
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
@@ -29,6 +29,7 @@ export default class Header extends React.Component<{}, HeaderState> {
         activeIndex: 0,
         animating: false,
         words: [
+        "amazing",
         "worthy",
         "exceptional",
         "loved",
@@ -96,11 +97,11 @@ export default class Header extends React.Component<{}, HeaderState> {
     //     return (
     //         <div>
     //             <h1>You are...
-    //                 <Carousel
+    //                 <UncontrolledCarousel
     //                 activeIndex={this.state.activeIndex}>
     //                     <CarouselIndicators words={this.state.words} activeIndex={this.state.activeIndex} />
     //                     {this.slides}
-    //                 </Carousel>
+    //                 </UncontrolledCarousel>
     //             </h1>
     //         </div>
     //     );

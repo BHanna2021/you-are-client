@@ -6,10 +6,6 @@ type QSProps = {
 
 export default class QuoteDBSearch extends React.Component<QSProps, {}> {
 
-    componentDidMount() {
-        console.info("QuoteSearch")
-    }
-
     render() {
         return(
             <>

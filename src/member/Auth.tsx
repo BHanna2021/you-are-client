@@ -2,7 +2,8 @@ import React from 'react';
 
 type AuthProps = {
     updateToken(token: string): void,
-    clickLogout(): void
+    clickLogout(): void,
+    updateAdmin(admin: string): void
 }
 
 type AuthState = {
@@ -57,7 +58,9 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
 
             const json = await res.json();
             const token = json.sessionToken
+            const admin = "" + json.member.isAdmin
             this.props.updateToken(token);
+            this.props.updateAdmin(admin)
 
             if (json.errors) {
                 let errMsg = json.errors[0].message
@@ -71,17 +74,14 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
 
     handleLogin = async () => {
         const apiURL = 'http://localhost:3000/member/login';
-        console.log(apiURL)
         const reqBody = {
             Member:{
                 email: this.state.email,
                 password: this.state.password,
             }
         }
-        console.log(reqBody)
 
         try {
-            console.log(reqBody)
             const res = await fetch(apiURL, {
                 method: "POST",
                 body: JSON.stringify(reqBody),
@@ -91,9 +91,10 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
             })
 
             const json = await res.json();
-            console.log(json)
             const token = json.sessionToken
+            const admin = "" + json.member.isAdmin
             this.props.updateToken(token);
+            this.props.updateAdmin(admin);
 
             if (json.errors) {
                 let errMsg = json.errors[0].message
