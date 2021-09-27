@@ -3,16 +3,17 @@ import { Table } from 'reactstrap';
 import QuoteUpdater from './UpdateQuotes';
 
 type QHProps = {
-    userToken: string
+    userToken: string,
+    isAdmin: string
 }
 
 type QHState = {
-    myQuotes: Quote[],
+    myQuotes: MyQuote[],
     updateActive: boolean,
-    quoteToUpdate: {}
-}
+    quoteToUpdate: MyQuote
+};
 
-type Quote = {
+type MyQuote = {
     quoteBody: string,
     id: number
 }
@@ -23,7 +24,10 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
         this.state = {
             myQuotes: [],
             updateActive: false,
-            quoteToUpdate: {}
+            quoteToUpdate: {
+                quoteBody: '',
+                id: 0
+            }
         }
     }
 
@@ -60,7 +64,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
                         'Authorization': `Bearer ${this.props.userToken}`
                     })
                 })
-                console.log(byeQuote)
+                alert('This quote has now been deleted.')
                 this.viewMyQuotes()
             } catch (err) {
                 console.log(err)
@@ -68,25 +72,29 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
         }
     }
 
-    editUpdateQuote = (quote: {}) => {
-        this.setState({quoteToUpdate: quote})
+    editUpdateQuote = (editQuote: any) => {
+        this.setState({ quoteToUpdate: {quoteBody: editQuote.quoteBody,  id: editQuote.id} })
     };
 
-    updateOn = () => {
-        this.setState({updateActive: true})
+    updateOn = (): void => {
+        this.setState({ updateActive: true })
     };
 
-    updateOff = () => {
-        this.setState({updateActive: false})
+    updateOff = (): void => {
+        this.setState({ updateActive: false })
     };
 
     quoteMapper = (): JSX.Element[] => {
-        return this.state.myQuotes.map((quote: Quote, index: number) => {
+        return this.state.myQuotes.map((quote: MyQuote, index: number) => {
             return(
                     <tbody>
                         <tr key={index}>
                             <td>{quote.quoteBody}</td>
-                            <td><button value={quote.id} onClick={() => {this.editUpdateQuote(quote.id)}} >Update</button></td>
+                            <td><button onClick={e => {
+                                e.preventDefault()
+                                this.editUpdateQuote(quote)
+                                this.updateOn()
+                            }} >Update</button></td>
                             <td><button onClick={() => {this.deleteQuote(quote)}}>Delete</button></td>
                         </tr>
                     </tbody>
@@ -102,7 +110,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
                 <Table>
                 {this.quoteMapper()}
                 </Table>
-                {this.state.updateActive ? <QuoteUpdater toBeUpdated={this.state.quoteToUpdate} updateOff={this.updateOff} token={this.props.userToken} viewMyQuotes={this.viewMyQuotes} /> : <></>}
+                {this.state.updateActive ? <QuoteUpdater toBeUpdated={this.state.quoteToUpdate} updateOff={this.updateOff} token={this.props.userToken} viewMyQuotes={this.viewMyQuotes} isAdmin={this.props.isAdmin} /> : <></>}
                 </div>
             </div>
         )

@@ -4,6 +4,7 @@ import Auth from './member/Auth'
 import Header from './common/Header';
 import Footer from './common/Footer';
 import Sidebar from './common/Sidebar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 type AppState = {
