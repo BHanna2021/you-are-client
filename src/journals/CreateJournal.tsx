@@ -2,6 +2,7 @@ import React from 'react';
 
 type JCreateProps = {
     creatorToken: string
+    apiErr: string
 }
 
 type JCreateState = {
@@ -19,6 +20,7 @@ export default class CreateJournal extends React.Component<JCreateProps, JCreate
     }
 
     handleJCreate = async () => {
+        const jCreateErr = 'This journal could not be created';
         const apiURL = 'http://localhost:3000/journal/';
         const jCreateBody = {
             Journal: {
@@ -39,6 +41,7 @@ export default class CreateJournal extends React.Component<JCreateProps, JCreate
             const json = await res.json()
             alert(`Journal '${json.journalName}' has been created.` )
         } catch (err) {
+            alert(`${jCreateErr}${this.props.apiErr}`)
             console.log(err)
         }
     }

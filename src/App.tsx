@@ -10,12 +10,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 type AppState = {
   sessionToken: string | null,
   isAdmin: string | null
+  apiErr: string
 }
 
 class App extends React.Component <{}, AppState> {
   state = {
     sessionToken: '',
-    isAdmin: ''
+    isAdmin: '',
+    apiErr: ', our apologies. Please try again later. If this is persistent, please submit an issue on Github.'
   }
 
   componentDidMount = () => {
@@ -49,7 +51,7 @@ clearToken = () => {
         <div>
           <Header />
           <Router>
-            <Sidebar currentToken={this.state.sessionToken} clickLogout={this.clearToken} isAdmin={this.state.isAdmin} />
+            <Sidebar apiErr={this.state.apiErr} currentToken={this.state.sessionToken} clickLogout={this.clearToken} isAdmin={this.state.isAdmin} />
           </Router>
           <Footer />
         </div> : <Auth updateToken={this.updateToken} clickLogout={this.clearToken} updateAdmin={this.updateAdmin} />

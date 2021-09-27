@@ -1,12 +1,16 @@
 import React from 'react';
 import { Table } from 'reactstrap';
+import UpdateJournal from './UpdateJournal';
 
 type JHProps = {
     userToken: string
+    apiErr: string
 }
 
 type JHState = {
     myJournals: Journal[]
+    jToBeUpdated: Journal
+    jUpdateActive: boolean
 }
 
 type Journal = {
@@ -19,11 +23,18 @@ export default class JournalHome extends React.Component<JHProps, JHState> {
     constructor(props: JHProps){
         super(props)
         this.state = {
-            myJournals: []
+            myJournals: [],
+            jToBeUpdated: {
+                journalBody: '',
+                journalName: '',
+                id: 0
+            },
+            jUpdateActive: false
         }
     }
 
     viewMyJournals = async () => {
+        const myJournalErr = 'The search for your journals has failed'
         const apiURL = 'http://localhost:3000/journal/';
         try {
             const res = await fetch (apiURL, {
@@ -36,6 +47,7 @@ export default class JournalHome extends React.Component<JHProps, JHState> {
             const mjjson = await res.json();
             this.setState({myJournals: mjjson})
         } catch (err) {
+            alert(`${myJournalErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
@@ -47,6 +59,7 @@ componentDidMount() {
 deleteJournal = async (journal: any) => {
     const confirm = prompt("Are you sure you want to delete this journal?", "Yes")
     if (confirm) {
+        const deleteJErr = 'This journal could not be deleted';
         const deleteURL = `http://localhost:3000/journal/${journal.id}`
         try {
             const byeJournal = await fetch (deleteURL, {
@@ -59,19 +72,36 @@ deleteJournal = async (journal: any) => {
             console.log(byeJournal)
             this.viewMyJournals()
         } catch (err) {
+            alert(`${deleteJErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
 }
+
+    editUpdateJournal = (editJournal: any) => {
+        this.setState({ jToBeUpdated: {journalBody: editJournal.journalBody, journalName: editJournal.journalName, id: editJournal.id} })
+    };
+
+    jUpdateOn = (): void => {
+        this.setState({ jUpdateActive: true })
+    };
+
+    jUpdateOff = (): void => {
+        this.setState({ jUpdateActive: false })
+    };
 
     journalMapper = (): JSX.Element[] => {
         return this.state.myJournals.map((journal: Journal, index: number) => {
             return(
                     <tbody>
                         <tr key={index}>
-                            <td>{journal.journalName}</td>&nbsp;
-                            <td>{journal.journalBody}</td>&nbsp;
-                            <td><button value={journal.id}>Update</button></td>&nbsp;
+                            <td>{journal.journalName}</td>
+                            <td>{journal.journalBody}</td>
+                            <td><button onClick={e => {
+                                e.preventDefault()
+                                this.editUpdateJournal(journal)
+                                this.jUpdateOn()
+                            }}>Update</button></td>
                             <td><button onClick={() => {this.deleteJournal(journal)}}>Delete</button></td>
                         </tr>
                     </tbody>
@@ -87,6 +117,7 @@ deleteJournal = async (journal: any) => {
                     <Table>
                     {this.journalMapper()}
                     </Table>
+                    {this.state.jUpdateActive ? <UpdateJournal apiErr={this.props.apiErr} jToBeUpdated={this.state.jToBeUpdated} jUpdateOff={this.jUpdateOff} token={this.props.userToken} viewMyJournals={this.viewMyJournals} /> : <></>}
                 </div>
             </div>
         )

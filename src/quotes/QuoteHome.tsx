@@ -5,6 +5,7 @@ import QuoteUpdater from './UpdateQuotes';
 type QHProps = {
     userToken: string,
     isAdmin: string
+    apiErr: string
 }
 
 type QHState = {
@@ -32,6 +33,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
     }
 
     viewMyQuotes = async () => {
+        const myQErr = 'Your quotes cannot be viewed at this time';
         const apiURL = 'http://localhost:3000/quote/mine';
         try {
             const res = await fetch (apiURL, {
@@ -44,6 +46,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
             const mqjson = await res.json();
             this.setState({myQuotes: mqjson})
         } catch (err) {
+            alert(`${myQErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
@@ -55,6 +58,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
     deleteQuote = async (quote: any) => {
         const confirm = prompt("Are you sure you want to delete this quote?", "Yes")
         if (confirm){
+            const deleteQErr = 'This quote cannot be deleted at this time';
             const deleteURL = `http://localhost:3000/quote/${quote.id}`
             try {
                 const byeQuote = await fetch (deleteURL, {
@@ -67,6 +71,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
                 alert('This quote has now been deleted.')
                 this.viewMyQuotes()
             } catch (err) {
+                alert(`${deleteQErr}${this.props.apiErr}`)
                 console.log(err)
             }
         }
@@ -110,7 +115,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
                 <Table>
                 {this.quoteMapper()}
                 </Table>
-                {this.state.updateActive ? <QuoteUpdater toBeUpdated={this.state.quoteToUpdate} updateOff={this.updateOff} token={this.props.userToken} viewMyQuotes={this.viewMyQuotes} isAdmin={this.props.isAdmin} /> : <></>}
+                {this.state.updateActive ? <QuoteUpdater apiErr={this.props.apiErr} toBeUpdated={this.state.quoteToUpdate} updateOff={this.updateOff} token={this.props.userToken} viewMyQuotes={this.viewMyQuotes} isAdmin={this.props.isAdmin} /> : <></>}
                 </div>
             </div>
         )

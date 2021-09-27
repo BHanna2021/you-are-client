@@ -14,6 +14,7 @@ type QUProps = {
     token: string
     viewMyQuotes: () => void
     isAdmin: string
+    apiErr: string
 }
 
 type QUState = {
@@ -30,6 +31,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
     }; 
 
     handleQUpdate = async () => {
+        const updateQErr = 'This quote cannot be updated at this time';
         const updateAlert = this.props.toBeUpdated.quoteBody;
         const apiURL = `http://localhost:3000/quote/${this.props.toBeUpdated.id}`;
         const qEditBody = {
@@ -51,6 +53,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
             this.props.updateOff()
             this.props.viewMyQuotes()
         } catch (err) {
+            alert(`${updateQErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
@@ -69,7 +72,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
                         }}>
                             <label htmlFor='quoteBody'>Quote to Update</label>
                             <br />
-                            <textarea name='quotebody' style={{height: "20em", width: "25em"}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})}>{this.props.toBeUpdated.quoteBody}</textarea>
+                            <textarea name='quotebody' style={{height: "20em", width: "25em"}} defaultValue={this.props.toBeUpdated.quoteBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})} />
                             <br />
                             <button type="submit">Update</button>
                             <button onClick={() => {this.props.updateOff(); this.props.viewMyQuotes()}}>Cancel</button>

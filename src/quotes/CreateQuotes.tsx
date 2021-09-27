@@ -3,6 +3,7 @@ import React from 'react';
 type QCreateProps = {
     creatorToken: string,
     isAdmin: string
+    apiErr: string
 }
 
 type QCreateState = {
@@ -22,6 +23,7 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
     }
 
     handleQCreate = async () => {
+        const qCreateErr = 'This quote cannot be created at this time';
         const apiURL = 'http://localhost:3000/quote/';
         console.log(apiURL)
         const qCreateBody = {
@@ -42,11 +44,13 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
             const json = await res.json()
             alert(`Quote '${json.quoteBody}' has been created.` )
         } catch (err) {
+            alert(`${qCreateErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
 
     handleAdQCreate = async () => {
+        const adQCreateErr = 'This quote cannot be created at this time';
         const apiURL = 'http://localhost:3000/quote/add';
         const qCreateBody = {
             Quote: {
@@ -67,6 +71,7 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
             const json = await res.json()
             alert(`Quote '${json.quoteBody}' has been created.` )
         } catch (err) {
+            alert(`${adQCreateErr}${this.props.apiErr}`)
             console.log(err)
         }
     }
