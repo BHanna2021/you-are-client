@@ -4,6 +4,9 @@ import {
     ModalHeader,
     ModalBody,
 } from 'reactstrap';
+import {
+    BasicReverseButton
+} from '../styles/style';
 
 type JUProps = {
     jToBeUpdated: {
@@ -67,8 +70,8 @@ export default class UpdateJournal extends React.Component<JUProps, JUState> {
     render() {
         return(
             <Modal isOpen={true}>
-                <ModalHeader>Update your journal here:</ModalHeader>
-                    <ModalBody>
+                <ModalHeader style={{backgroundColor: 'indigo', color: 'antiquewhite'}}>Update your journal here:</ModalHeader>
+                    <ModalBody style={{backgroundColor: 'blanchedalmond'}}>
                         <form onSubmit={(e) => {
                             e.preventDefault()
                             this.handleJUpdate()
@@ -76,14 +79,14 @@ export default class UpdateJournal extends React.Component<JUProps, JUState> {
                             <div>
                                 <label htmlFor='journalName'>Journal Name to Update</label>
                                 <br />
-                                <input name='journalName' style={{width: "25em"}} defaultValue={this.props.jToBeUpdated.journalName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({jNameToUpdate: e.target.value})} />
+                                <input name='journalName' style={{width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({jNameToUpdate: e.target.value})} />
                                 <br />
                                 <label htmlFor='journalBody'>Journal to Update</label>
                                 <br />
-                                <textarea name='journalBody' style={{height: "20em", width: "25em"}} defaultValue={this.props.jToBeUpdated.journalBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({jBodyToUpdate: e.target.value})} />
+                                <textarea name='journalBody' style={{height: "20em", width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({jBodyToUpdate: e.target.value})} />
                                 <br />
-                                <button type="submit">Update</button>
-                                <button onClick={() => {this.props.jUpdateOff(); this.props.viewMyJournals()}}>Cancel</button>
+                                <BasicReverseButton type="submit">Update</BasicReverseButton>&nbsp;
+                                <BasicReverseButton onClick={() => {this.props.jUpdateOff(); this.props.viewMyJournals()}}>Cancel</BasicReverseButton>
                             </div>
                         </form>
                     </ModalBody>

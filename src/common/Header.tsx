@@ -6,6 +6,9 @@ import {
     CarouselIndicators,
     CarouselCaption,
 } from "reactstrap";
+import {
+    HeadStyle
+} from '../styles/style';
 
 type HeaderState = {
     activeIndex: number;
@@ -87,9 +90,9 @@ export default class Header extends React.Component<{}, HeaderState> {
 
     render(){
         return(
-            <div>
+            <HeadStyle>
                 <h1>You are...incredible</h1>
-            </div>
+            </HeadStyle>
         )
     }
 

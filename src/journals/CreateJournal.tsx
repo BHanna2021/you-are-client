@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    FormInput,
+    Label,
+    CreateButton
+} from '../styles/style';
 
 type JCreateProps = {
     creatorToken: string
@@ -56,18 +61,18 @@ export default class CreateJournal extends React.Component<JCreateProps, JCreate
                 this.setState({journalBody: ''})
                 this.setState({journalName: ''})
             }}>
-            <h1>Add your journal entry here:</h1>
+            <h1>Add a new entry here:</h1>
             <div>
-                <label htmlFor='journalname'>Journal Title</label>
+                <Label htmlFor='journalname'>Journal Title</Label>
                 <br />
-                <input name='journalname' value={this.state.journalName} style={{width: "25em"}} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({journalName: e.target.value})} />
+                <FormInput name='journalname' value={this.state.journalName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({journalName: e.target.value})} />
                 <br />
                 <br />
-                <label htmlFor='journalbody'>Journal Entry</label>
+                <Label htmlFor='journalbody'>Journal Entry</Label>
                 <br />
-                <textarea name='journalbody' value={this.state.journalBody} style={{height: "20em", width: "25em"}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({journalBody: e.target.value})}/>
+                <textarea name='journalbody' value={this.state.journalBody} style={{height: "20em", width: "19em", backgroundColor: "mintcream"}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({journalBody: e.target.value})}/>
                 <br />
-                <button type='submit' style={{fontSize: "x-large"}}>Create &#x270D;</button>
+                <CreateButton type='submit' style={{fontSize: "x-large"}}>Create &#x270D;</CreateButton>
             </div>
             </form>
         )

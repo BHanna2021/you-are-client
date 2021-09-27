@@ -4,6 +4,10 @@ import {
     ModalHeader,
     ModalBody,
 } from 'reactstrap';
+import {
+    BasicReverseButton,
+} from '../styles/style';
+
 
 type QUProps = {
     toBeUpdated: {
@@ -64,18 +68,18 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
     render() {
         return(
             <Modal isOpen={true}>
-                <ModalHeader>Update your quote here:</ModalHeader>
-                    <ModalBody>
+                <ModalHeader style={{backgroundColor: 'indigo', color: 'antiquewhite'}}>Update your quote here:</ModalHeader>
+                    <ModalBody style={{backgroundColor: 'blanchedalmond'}}>
                         <form onSubmit={(e) => {
                             e.preventDefault()
                             this.handleQUpdate()
                         }}>
                             <label htmlFor='quoteBody'>Quote to Update</label>
                             <br />
-                            <textarea name='quotebody' style={{height: "20em", width: "25em"}} defaultValue={this.props.toBeUpdated.quoteBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})} />
+                            <textarea name='quotebody' style={{height: "20em", width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.toBeUpdated.quoteBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})} />
                             <br />
-                            <button type="submit">Update</button>
-                            <button onClick={() => {this.props.updateOff(); this.props.viewMyQuotes()}}>Cancel</button>
+                            <BasicReverseButton type="submit">Update</BasicReverseButton>&nbsp;
+                            <BasicReverseButton onClick={() => {this.props.updateOff(); this.props.viewMyQuotes()}}>Cancel</BasicReverseButton>
                         </form>
                     </ModalBody>
             </Modal>

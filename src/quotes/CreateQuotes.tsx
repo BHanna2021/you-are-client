@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    Label,
+    CreateButton
+} from '../styles/style';
 
 type QCreateProps = {
     creatorToken: string,
@@ -87,20 +91,20 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
                 this.setState({share: false})
                 this.setState({approvedForAll: false})
             }}>
-            <h1>Add your quote here:</h1>
+            <h1 style={{color: 'mintcream'}}>Add your quote here:</h1>
             <div>
-                <label htmlFor='quotebody'>New Quote</label>
+                <Label htmlFor='quotebody'>New Quote</Label>
                 <br />
-                <textarea name='quotebody' value={this.state.quoteBody} style={{height: "20em", width: "25em"}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteBody: e.target.value})}/>
-                <br />
-                <br />
-                <label htmlFor='shareable'>Share?</label>&nbsp;
-                <input type='checkbox' checked={this.state.share} onChange={() => this.setState({share: true})} name='shareable' />&nbsp;&nbsp;
-                <label htmlFor='allowforall'>Allow Search?</label>&nbsp;
-                <input type='checkbox' checked={this.state.approvedForAll} onChange={() => this.setState({approvedForAll: true})} name='allowforall' />
+                <textarea name='quotebody' value={this.state.quoteBody} style={{height: "20em", width: "19em", backgroundColor: 'mintcream'}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteBody: e.target.value})}/>
                 <br />
                 <br />
-                <button type='submit' style={{fontSize: "x-large"}}>Create &#x270D;</button>
+                <Label htmlFor='shareable'>Share?</Label>&nbsp;
+                <input style={{backgroundColor: 'mintcream'}} type='checkbox' checked={this.state.share} onChange={() => this.setState({share: true})} name='shareable' />&nbsp;&nbsp;
+                <Label htmlFor='allowforall'>Allow Search?</Label>&nbsp;
+                <input style={{backgroundColor: 'mintcream'}} type='checkbox' checked={this.state.approvedForAll} onChange={() => this.setState({approvedForAll: true})} name='allowforall' />
+                <br />
+                <br />
+                <CreateButton type='submit' >Create &#x270D;</CreateButton>
             </div>
             </form> :
             <form onSubmit={(e) => {
@@ -112,9 +116,12 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
             <div>
                 <label htmlFor='quotebody'>New Quote</label>
                 <br />
-                <textarea name='quotebody' value={this.state.quoteBody} style={{height: "20em", width: "25em"}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteBody: e.target.value})}/>
+                <textarea name='quotebody' value={this.state.quoteBody} style={{height: "20em", width: "19em", backgroundColor: 'mintcream'}} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteBody: e.target.value})}/>
                 <br />
-                <button type='submit' style={{fontSize: "x-large"}}>Create &#x270D;</button>
+                <Label htmlFor='shareable' title='Check this box if you want to share this quote with others.'>Share?</Label>&nbsp;
+                <input style={{backgroundColor: 'mintcream'}} type='checkbox' checked={this.state.share} onChange={() => this.setState({share: true})} name='shareable' />
+                <br />
+                <CreateButton type='submit' style={{fontSize: "x-large"}}>Create &#x270D;</CreateButton>
             </div>
             </form>
         )

@@ -1,6 +1,11 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import QuoteUpdater from './UpdateQuotes';
+import {
+    TD,
+    SmallButton,
+    SmallReverseButton
+} from '../styles/style';
 
 type QHProps = {
     userToken: string,
@@ -94,13 +99,13 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
             return(
                     <tbody>
                         <tr key={index}>
-                            <td>{quote.quoteBody}</td>
-                            <td><button onClick={e => {
+                            <TD>{quote.quoteBody}</TD>
+                            <TD><SmallButton onClick={e => {
                                 e.preventDefault()
                                 this.editUpdateQuote(quote)
                                 this.updateOn()
-                            }} >Update</button></td>
-                            <td><button onClick={() => {this.deleteQuote(quote)}}>Delete</button></td>
+                            }} >Update</SmallButton></TD>
+                            <TD><SmallReverseButton onClick={() => {this.deleteQuote(quote)}}>Delete</SmallReverseButton></TD>
                         </tr>
                     </tbody>
             )

@@ -1,5 +1,9 @@
 import React from 'react';
 import { Table } from 'reactstrap';
+import {
+    TD,
+    TH
+} from '../styles/style';
 
 type QSProps = {
     userToken: string
@@ -84,7 +88,7 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
             return(
                 <tbody>
                     <tr key={index}>
-                        <td>{quote.quoteBody}</td>
+                        <TD>{quote.quoteBody}</TD>
                     </tr>
                 </tbody>
             )
@@ -96,10 +100,10 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
             return(
                 <tbody>
                     <tr key={index}>
-                        <td>{quote.id}</td>
-                        <td>{quote.quoteBody}</td>
-                        <td><input type='checkbox' checked={quote.share} /></td>
-                        <td><input type='checkbox' checked={quote.approvedForAll} /></td>
+                        <TD>{quote.id}</TD>
+                        <TD>{quote.quoteBody}</TD>
+                        <TD><input type='checkbox' checked={quote.share} /></TD>
+                        <TD><input type='checkbox' style={{backgroundColor: 'mintcream'}} /></TD>
                     </tr>
                 </tbody>
             )
@@ -114,10 +118,10 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
             <Table>
                 <thead>
                     <tr>
-                        <th>Quote Id</th>
-                        <th>Quote</th>
-                        <th>Share</th>
-                        <th>Allow?</th>
+                        <TH>Quote Id</TH>
+                        <TH>Quote</TH>
+                        <TH>Share</TH>
+                        <TH>Allow?</TH>
                     </tr>
                 </thead>
                 {this.shareQuoteMapper()}

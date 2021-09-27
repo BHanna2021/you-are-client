@@ -1,6 +1,11 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import UpdateJournal from './UpdateJournal';
+import {
+    TD,
+    SmallButton,
+    SmallReverseButton
+} from '../styles/style';
 
 type JHProps = {
     userToken: string
@@ -95,14 +100,14 @@ deleteJournal = async (journal: any) => {
             return(
                     <tbody>
                         <tr key={index}>
-                            <td>{journal.journalName}</td>
-                            <td>{journal.journalBody}</td>
-                            <td><button onClick={e => {
+                            <TD>{journal.journalName}</TD>
+                            <TD>{journal.journalBody}</TD>
+                            <TD><SmallButton onClick={e => {
                                 e.preventDefault()
                                 this.editUpdateJournal(journal)
                                 this.jUpdateOn()
-                            }}>Update</button></td>
-                            <td><button onClick={() => {this.deleteJournal(journal)}}>Delete</button></td>
+                            }}>Update</SmallButton></TD>
+                            <TD><SmallReverseButton onClick={() => {this.deleteJournal(journal)}}>Delete</SmallReverseButton></TD>
                         </tr>
                     </tbody>
             )
@@ -113,7 +118,7 @@ deleteJournal = async (journal: any) => {
         return(
             <div>
                 <div>
-                    <h1>My Journals:</h1>
+                    <h1>My Journal Entries:</h1>
                     <Table>
                     {this.journalMapper()}
                     </Table>
