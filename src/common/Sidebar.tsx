@@ -38,7 +38,7 @@ export default class Sidebar extends React.Component<SidebarProps, {}> {
                         <Route exact path="/"><Home /></Route>
                         <Route exact path="/myjournal"><JournalHome userToken={this.props.currentToken} apiErr={this.props.apiErr} /></Route>
                         <Route exact path="/myquotes"><QuoteHome userToken={this.props.currentToken} isAdmin={this.props.isAdmin} apiErr={this.props.apiErr} /></Route>
-                        <Route exact path="/quotesearch"><QuoteDBSearch userToken={this.props.currentToken} apiErr={this.props.apiErr} /></Route>
+                        <Route exact path="/quotesearch"><QuoteDBSearch userToken={this.props.currentToken} apiErr={this.props.apiErr} isAdmin={this.props.isAdmin} /></Route>
                         <Route path="/createquote"><QuoteCreator creatorToken={this.props.currentToken} isAdmin={this.props.isAdmin} apiErr={this.props.apiErr} /></Route>
                         <Route path="/createjournal"><JournalCreator creatorToken={this.props.currentToken} apiErr={this.props.apiErr} /></Route>
                     </Switch>
