@@ -2,7 +2,8 @@ import React from 'react';
 import { Table } from 'reactstrap';
 import {
     TD,
-    TH
+    TH,
+    MyH1
 } from '../styles/style';
 
 type QSProps = {
@@ -96,13 +97,13 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
     }
 
     shareQuoteMapper = (): JSX.Element[] => {
-        return this.state.shareQuotes.map((quote: AdminQuote, index: number) => {
+        return this.state.shareQuotes.map((quote: AdminQuote) => {
             return(
                 <tbody>
-                    <tr key={index}>
+                    <tr key={quote.id}>
                         <TD>{quote.id}</TD>
                         <TD>{quote.quoteBody}</TD>
-                        <TD><input type='checkbox' checked={quote.share} /></TD>
+                        <TD><input type='checkbox' defaultChecked={quote.share} /></TD>
                         <TD><input type='checkbox' style={{backgroundColor: 'mintcream'}} /></TD>
                     </tr>
                 </tbody>
@@ -114,7 +115,7 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
         return(
             this.props.isAdmin === 'true' ?
             <div>
-            <h1>Quotes to be approved:</h1>
+            <MyH1>Quotes to be approved:</MyH1>
             <Table>
                 <thead>
                     <tr>
@@ -128,7 +129,7 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
             </Table>
             </div> :
             <div>
-            <h1>Other quotes for you:</h1>
+            <MyH1>Other quotes for you:</MyH1>
             <Table>
                 {this.allQuoteMapper()}
             </Table>

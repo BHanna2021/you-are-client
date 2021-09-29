@@ -4,18 +4,14 @@ import {
 } from '../styles/style';
 
 type HeaderState = {
-    activeIndex: number;
-    animating: boolean;
     words: string[];
-    anchorEl: Element | ((element: Element) => Element) | null | undefined
+    displayWord: string
 };
 
 export default class Header extends React.Component<{}, HeaderState> {
     constructor(props: {}) {
     super(props);
     this.state = {
-        activeIndex: 0,
-        animating: false,
         words: [
             "amazing",
             "worthy",
@@ -36,14 +32,23 @@ export default class Header extends React.Component<{}, HeaderState> {
             "tenacious",
             "YOU",
         ],
-        anchorEl: null
+        displayWord: ''
     };
+    }
+
+    randomWord = () => {
+        const newWord = Math.floor((Math.random() * this.state.words.length-1) + 1);
+        this.setState({ displayWord: this.state.words[newWord] })
+    }
+
+    componentDidMount() {
+        this.randomWord()
     }
 
     render(){
         return(
             <HeadStyle>
-                <h1>You are...strong</h1>
+                <h1>You are...{this.state.displayWord}</h1>
             </HeadStyle>
         )
     }

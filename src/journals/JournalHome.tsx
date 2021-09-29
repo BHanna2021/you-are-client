@@ -4,7 +4,8 @@ import UpdateJournal from './UpdateJournal';
 import {
     TD,
     SmallButton,
-    SmallReverseButton
+    SmallReverseButton,
+    MyH1
 } from '../styles/style';
 
 type JHProps = {
@@ -96,10 +97,10 @@ deleteJournal = async (journal: any) => {
     };
 
     journalMapper = (): JSX.Element[] => {
-        return this.state.myJournals.map((journal: Journal, index: number) => {
+        return this.state.myJournals.map((journal: Journal) => {
             return(
                     <tbody>
-                        <tr key={index}>
+                        <tr key={journal.id}>
                             <TD>{journal.journalName}</TD>
                             <TD>{journal.journalBody}</TD>
                             <TD><SmallButton onClick={e => {
@@ -118,7 +119,7 @@ deleteJournal = async (journal: any) => {
         return(
             <div>
                 <div>
-                    <h1>My Journal Entries:</h1>
+                    <MyH1>My Journal Entries:</MyH1>
                     <Table>
                     {this.journalMapper()}
                     </Table>

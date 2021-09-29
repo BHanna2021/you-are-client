@@ -4,7 +4,8 @@ import QuoteUpdater from './UpdateQuotes';
 import {
     TD,
     SmallButton,
-    SmallReverseButton
+    SmallReverseButton,
+    MyH1
 } from '../styles/style';
 
 type QHProps = {
@@ -43,10 +44,10 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
         try {
             const res = await fetch (apiURL, {
                 method: "GET",
-                headers: {
+                headers: new Headers({
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${this.props.userToken}`
-                }
+                })
             })
             const mqjson = await res.json();
             this.setState({myQuotes: mqjson})
@@ -95,10 +96,10 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
     };
 
     quoteMapper = (): JSX.Element[] => {
-        return this.state.myQuotes.map((quote: MyQuote, index: number) => {
+        return this.state.myQuotes.map((quote: MyQuote) => {
             return(
                     <tbody>
-                        <tr key={index}>
+                        <tr key={quote.id}>
                             <TD>{quote.quoteBody}</TD>
                             <TD><SmallButton onClick={e => {
                                 e.preventDefault()
@@ -116,7 +117,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
         return(
             <div>
                 <div>
-                <h1>Quotes I've added:</h1>
+                <MyH1>Quotes I've added:</MyH1>
                 <Table>
                 {this.quoteMapper()}
                 </Table>

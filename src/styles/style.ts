@@ -7,7 +7,6 @@ export const Container = styled.div`
     align-items: top;
     color: papayawhip;
     background-color: #01579B;
-    // border: 1px solid red;
     height: 86vh;
 `
 
@@ -18,7 +17,6 @@ export const Form = styled.form`
     text-align: center;
     color: papayawhip;
     background-color: #01579B;
-    // border: 1px solid pink;
     width: 75%;
     height: 75vh;
     padding: 1%;
@@ -50,8 +48,7 @@ export const BasicButton = styled.button`
     border: 2px solid indigo;
     background-color: papayawhip;
     padding: 0.25em 1em;
-    // margin-left: 1%;
-    width: 12em;
+    width: 17em;
     font-size: large;
     font-family: 'Oldenburg', cursive;
 `
@@ -61,7 +58,6 @@ export const BasicReverseButton = styled.button`
     color: antiquewhite;
     border: 2px solid antiquewhite;
     background-color: indigo;
-    // margin-left: 1%;
     padding: 0.25em 1em;
     font-family: 'Oldenburg', cursive;
 `
@@ -83,7 +79,6 @@ export const SmallButton = styled.button`
     color: indigo;
     background-color: papayawhip;
     border: 2px solid papayawhip;
-    // font-family: 'Oldenburg', cursive;
 `
 
 export const SmallReverseButton = styled.button`
@@ -91,7 +86,6 @@ export const SmallReverseButton = styled.button`
     color: papayawhip;
     background-color: indigo;
     border: 1px solid indigo;
-    // font-family: 'Oldenburg', cursive;
 `
 
 export const Input = styled.input`
@@ -116,7 +110,6 @@ export const AuthHeader = styled.div`
     justify-content: space-evenly;
     color: papayawhip;
     text-align: center;
-    // border: 1px solid red;
     background-color: indigo;
     padding-top: 1%;
     padding-bottom: 1%;
@@ -128,8 +121,6 @@ export const SideStyle = styled.div`
     display: flex;
     background-color: #01579B;
     color: antiquewhite;
-    // border: 1px solid antiquewhite;
-    // justify-content: center;
     width: 100%;
     min-height: 75vh;
     padding-top: 3%;
@@ -137,17 +128,10 @@ export const SideStyle = styled.div`
     position: relative;
 `
 
-export const Centered = styled.div`
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-`
-
 export const HeadStyle = styled.div`
     display: flex;
     background-color: indigo;
     color: antiquewhite;
-    // border: 1px solid white;
     justify-content: space-evenly;
     width: 100%;
     padding-top: 2%;
@@ -158,7 +142,6 @@ export const HeadStyle = styled.div`
 export const FootStyle = styled.div`
     background-color: #424242;
     color: papayawhip;
-    // border: 1px solid black;
     justify-content: space-evenly;
     width: 100%;
     min-height: 20vh;
@@ -168,7 +151,6 @@ export const FootStyle = styled.div`
 
 export const TD = styled.td`
     color: mintcream;
-    // font-family: 'Oldenburg', cursive;
 `
 
 export const TH = styled.td`
@@ -223,4 +205,9 @@ font-weight: bold;
 export const FooterP = styled.p`
 color: mintcream;
 font-size: 12px;
+`
+
+export const MyH1 = styled.h1`
+color: mintcream;
+font-family: 'Oldenburg', cursive;
 `

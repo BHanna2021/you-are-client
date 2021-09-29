@@ -25,7 +25,9 @@ type AuthState = {
     errorText: string,
     emailValid: boolean,
     pwValid: boolean,
-    token: string
+    token: string,
+    begErr: string,
+    endErr: string
 }
 
 export default class Auth extends React.Component<AuthProps, AuthState> {
@@ -40,11 +42,14 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
             errorText: '',
             emailValid: false,
             pwValid: false,
-            token: ''
+            token: '',
+            begErr: 'Our apologies, member ',
+            endErr: ' does not appear to be working at this time.  Please try again later.'
         }
 
 
     handleSignup = async () => {
+        const signErr = 'signup'
         const apiURL = 'http://localhost:3000/member/register';
         const reqBody = {
             Member: {
@@ -77,11 +82,13 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 throw new Error(json.errors[0].message)
             }
         } catch (err) {
+            alert(`${this.state.begErr}${signErr}${this.state.endErr}`)
             console.log(err)
         }
     }
 
     handleLogin = async () => {
+        const logErr = 'login';
         const apiURL = 'http://localhost:3000/member/login';
         const reqBody = {
             Member:{
@@ -111,6 +118,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 throw new Error(json.errors[0].message)
             }
         } catch (err) {
+            alert(`${this.state.begErr}${logErr}${this.state.endErr}`)
             console.log(err)
         }
     }
@@ -141,7 +149,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
             <AuthHeader>
                 <h1>You Are...</h1>
                 <br />
-                <h3>A safe place to find and create quotes, and journal through life.</h3>
+                <h3>A safe place to find and create uplifting quotes, and journal through life.</h3>
             </AuthHeader>
                 {this.state.signup ?
                 <Container>
