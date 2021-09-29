@@ -11,7 +11,8 @@ import JournalHome from '../journals/JournalHome';
 import QuoteCreator from '../quotes/CreateQuotes';
 import JournalCreator from '../journals/CreateJournal';
 import {
-    BasicButton
+    BasicButton,
+    Centered
 } from '../styles/style';
 
 type SidebarProps = {
@@ -28,7 +29,7 @@ export default class Sidebar extends React.Component<SidebarProps, {}> {
         return(
             <div>
                 <div>
-                    <Link to="/myjournal" ><h4><BasicButton>&#x1F4D3; My Journal</BasicButton></h4></Link>
+                    <Link to="/myjournal" ><h4 style={{justifySelf: 'center'}}><BasicButton>&#x1F4D3; My Journal</BasicButton></h4></Link>
                     <Link to ="/createjournal"><h4><BasicButton>&#x1F4D6; Add a Journal</BasicButton></h4></Link>
                     <Link to="/myquotes" ><h4><BasicButton>&#x1F4DC; My Quotes</BasicButton></h4></Link>
                     <Link to="/createquote"><h4><BasicButton>&#x1F49F; Add a Quote</BasicButton></h4></Link>

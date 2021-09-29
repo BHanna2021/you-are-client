@@ -76,7 +76,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
                         }}>
                             <label htmlFor='quoteBody'>Quote to Update</label>
                             <br />
-                            <textarea name='quotebody' style={{height: "20em", width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.toBeUpdated.quoteBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})} />
+                            <textarea name='quotebody' style={{height: "20em", width: "17em", backgroundColor: "cornsilk"}} defaultValue={this.props.toBeUpdated.quoteBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({quoteToUpdate: e.target.value})} />
                             <br />
                             <BasicReverseButton type="submit">Update</BasicReverseButton>&nbsp;
                             <BasicReverseButton onClick={() => {this.props.updateOff(); this.props.viewMyQuotes()}}>Cancel</BasicReverseButton>

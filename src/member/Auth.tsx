@@ -5,7 +5,8 @@ import {
     Button,
     ReverseButton,
     Input,
-    AuthHeader
+    AuthHeader,
+    Label
 } from '../styles/style';
 
 type AuthProps = {
@@ -150,7 +151,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 }}>
                     <div>
                         <div>
-                            <label htmlFor='email'>Email: </label>
+                            <Label htmlFor='email'>Email: </Label>
                             <br />
                             <Input type='email' id='email' name='email' title='Please enter a valid email address.' required pattern='^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' onChange={(e) => { this.handleEmail(e) }} />
                         </div>
@@ -158,7 +159,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                     <br />
                     <div>
                         <div>
-                            <label htmlFor='password'>Password: </label>
+                            <Label htmlFor='password'>Password: </Label>
                             <br />
                             <Input type='password' id='password' name='password' title='Password must be between 8 and 16 characters, and contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.' required pattern='^(?=.{5,10})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^+=]).*$' onChange={(e) => { this.handlePassword(e) }} />
                         </div>
@@ -166,7 +167,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                     <br />
                     <div>
                         <div>
-                            <label htmlFor='firstName'>First Name: </label>
+                            <Label htmlFor='firstName'>First Name: </Label>
                             <br />
                             <Input type='text' id='firstName' name='firstName' required onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({firstName: e.target.value})} />
                         </div>
@@ -174,7 +175,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                     <br />
                     <div>
                         <div>
-                            <label htmlFor='phoneNumber'>Phone Number: </label>
+                            <Label htmlFor='phoneNumber'>Phone Number: </Label>
                             <br />
                             <Input type='text' id='phoneNumber' name='phoneNumber' placeholder='(optional)' onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({phoneNumber: e.target.value})} />
                         </div>
@@ -191,7 +192,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 }}>
                     <div>
                         <div>
-                            <label htmlFor='email'>Email: </label>
+                            <Label htmlFor='email'>Email: </Label>
                             <br />
                             <Input type='email' id='email' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.setState({email: e.target.value}) }} title='Please enter the email address used to signup.' required />
                         </div>
@@ -199,7 +200,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                     <br />
                     <div>
                         <div>
-                            <label htmlFor='password'>Password: </label>
+                            <Label htmlFor='password'>Password: </Label>
                             <br />
                             <Input type='password' id='password' name='password' onChange={(e: React.ChangeEvent<HTMLInputElement>) => { this.setState({password: e.target.value}) }} title='Please enter your password.' required />
                         </div>

@@ -79,11 +79,11 @@ export default class UpdateJournal extends React.Component<JUProps, JUState> {
                             <div>
                                 <label htmlFor='journalName'>Journal Name to Update</label>
                                 <br />
-                                <input name='journalName' style={{width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({jNameToUpdate: e.target.value})} />
+                                <input name='journalName' style={{width: "17em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({jNameToUpdate: e.target.value})} />
                                 <br />
                                 <label htmlFor='journalBody'>Journal to Update</label>
                                 <br />
-                                <textarea name='journalBody' style={{height: "20em", width: "22em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({jBodyToUpdate: e.target.value})} />
+                                <textarea name='journalBody' style={{height: "20em", width: "17em", backgroundColor: "cornsilk"}} defaultValue={this.props.jToBeUpdated.journalBody} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => this.setState({jBodyToUpdate: e.target.value})} />
                                 <br />
                                 <BasicReverseButton type="submit">Update</BasicReverseButton>&nbsp;
                                 <BasicReverseButton onClick={() => {this.props.jUpdateOff(); this.props.viewMyJournals()}}>Cancel</BasicReverseButton>
