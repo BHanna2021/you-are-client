@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+# **You Are…(client)**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You are… is an app to help uplift the spirits of those using the app. There are quotes available to read. The member can add their own quotes that they have found helpful, and they can also add journal entries to help them navigate all that life has to offer.
 
-## Available Scripts
+The client side was built with class-based React and Typescript using npm install for the following items, followed by versions:
 
-In the project directory, you can run:
+- bootstrap (v 5.1.1)
+- react (v 17.0.2)
+- react-bootstrap (v 1.6.4)
+- react-dom (v 17.0.2)
+- reac-router-dom (v 5.3.0)
+- reactstrap (v 8.10.0)
+- react-scripts (v 4.0.3)
+- styled-components (v 5.3.1)
+- @material-ui/icons (v 4.11.2)
+- typescript (v 4.4.3)
+- see package.json for full list
 
-### `npm start`
+You will need to also get the server side of You Are… set up – follow the readme for that.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ultimately, this app is meant to be uplifting, reinforcing, and help people find the strength and determination to take the next step in their lives…to not give up.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This is just a start to what this app should become – future iterations may include:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- members can share quotes with other members
+- ther api links being added to include the ability to search for meaningful quotes
+- members can store urls for pictures and can see the pictures displayed when they login
+- better styling and more reactive
+- search for quotes and journals by word rather than just seeing all of them displayed
+- search for journals by date range (created date)
+- members can mark quotes as favorite/loved
+- display quotes marked as favorite/loved so member can see all such marked
