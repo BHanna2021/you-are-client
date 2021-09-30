@@ -26,8 +26,7 @@ type AuthState = {
     emailValid: boolean,
     pwValid: boolean,
     token: string,
-    begErr: string,
-    endErr: string
+    begErr: string
 }
 
 export default class Auth extends React.Component<AuthProps, AuthState> {
@@ -43,13 +42,12 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
             emailValid: false,
             pwValid: false,
             token: '',
-            begErr: 'Our apologies, member ',
-            endErr: ' does not appear to be working at this time.  Please try again later.'
+            begErr: 'Our apologies, '
         }
 
 
     handleSignup = async () => {
-        const signErr = 'signup'
+        const signErr = 'this email may already be in use, please try logging in or choose a different email.'
         const apiURL = 'http://localhost:3000/member/register';
         const reqBody = {
             Member: {
@@ -82,13 +80,13 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 throw new Error(json.errors[0].message)
             }
         } catch (err) {
-            alert(`${this.state.begErr}${signErr}${this.state.endErr}`)
+            alert(`${this.state.begErr}${signErr}`)
             console.log(err)
         }
     }
 
     handleLogin = async () => {
-        const logErr = 'login';
+        const logErr = 'the username and/or password entered does not match our records.';
         const apiURL = 'http://localhost:3000/member/login';
         const reqBody = {
             Member:{
@@ -118,7 +116,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 throw new Error(json.errors[0].message)
             }
         } catch (err) {
-            alert(`${this.state.begErr}${logErr}${this.state.endErr}`)
+            alert(`${this.state.begErr}${logErr}`)
             console.log(err)
         }
     }
