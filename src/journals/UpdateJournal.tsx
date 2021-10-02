@@ -30,8 +30,8 @@ export default class UpdateJournal extends React.Component<JUProps, JUState> {
     constructor(props: JUProps){
         super(props)
         this.state = {
-            jBodyToUpdate: '',
-            jNameToUpdate: ''
+            jBodyToUpdate: this.props.jToBeUpdated.journalBody,
+            jNameToUpdate: this.props.jToBeUpdated.journalName
         }
     }; 
 

@@ -30,7 +30,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
     constructor(props: QUProps){
         super(props)
         this.state = {
-            quoteToUpdate: ''
+            quoteToUpdate: this.props.toBeUpdated.quoteBody
         }
     }; 
 
