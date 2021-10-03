@@ -8,6 +8,7 @@ import {
     AuthHeader,
     Label
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type AuthProps = {
     updateToken(token: string): void,
@@ -48,7 +49,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
 
     handleSignup = async () => {
         const signErr = 'this email may already be in use, please try logging in or choose a different email.'
-        const apiURL = 'http://localhost:3000/member/register';
+        const apiURL = `${APIURL}member/register`;
         const reqBody = {
             Member: {
                 email: this.state.email,
@@ -87,7 +88,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
 
     handleLogin = async () => {
         const logErr = 'the username and/or password entered does not match our records.';
-        const apiURL = 'http://localhost:3000/member/login';
+        const apiURL = `${APIURL}member/login`;
         const reqBody = {
             Member:{
                 email: this.state.email,

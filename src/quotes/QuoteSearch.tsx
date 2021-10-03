@@ -5,6 +5,7 @@ import {
     TH,
     MyH1
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type QSProps = {
     userToken: string
@@ -40,7 +41,7 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
 
     searchAllQuotes = async () => {
         const allQuotesErr = 'This search cannot be performed at this time';
-        const searchDBURL = 'http://localhost:3000/quote/';
+        const searchDBURL = `${APIURL}quote/`;
         try {
             const res = await fetch (searchDBURL, {
                 method: 'GET',
@@ -59,7 +60,7 @@ export default class QuoteDBSearch extends React.Component<QSProps, QSState> {
 
     searchShareableQuotes = async () => {
         const ShareQErr = 'This search cannot be performed at this time';
-        const shareSearch = 'http://localhost:3000/quote/share';
+        const shareSearch = `${APIURL}quote/share`;
         try {
             const res = await fetch (shareSearch, {
                 method: 'GET',

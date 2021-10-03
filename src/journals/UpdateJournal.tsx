@@ -7,6 +7,7 @@ import {
 import {
     BasicReverseButton
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type JUProps = {
     jToBeUpdated: {
@@ -38,7 +39,7 @@ export default class UpdateJournal extends React.Component<JUProps, JUState> {
     handleJUpdate = async () => {
         const jUpdateErr = 'This journal could not be updated';
         const jUpdateAlert = this.props.jToBeUpdated.journalName;
-        const apiURL = `http://localhost:3000/journal/${this.props.jToBeUpdated.id}`;
+        const apiURL = `${APIURL}journal/${this.props.jToBeUpdated.id}`;
         const jEditBody = {
             Journal: {
                 journalBody: this.state.jBodyToUpdate,

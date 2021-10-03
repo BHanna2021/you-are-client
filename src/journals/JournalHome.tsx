@@ -7,6 +7,7 @@ import {
     SmallReverseButton,
     MyH1
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type JHProps = {
     userToken: string
@@ -41,7 +42,7 @@ export default class JournalHome extends React.Component<JHProps, JHState> {
 
     viewMyJournals = async () => {
         const myJournalErr = 'The search for your journals has failed'
-        const apiURL = 'http://localhost:3000/journal/';
+        const apiURL = `${APIURL}journal/`;
         try {
             const res = await fetch (apiURL, {
                 method: "GET",
@@ -66,7 +67,7 @@ deleteJournal = async (journal: any) => {
     const confirm = prompt("Are you sure you want to delete this journal?", "Yes")
     if (confirm) {
         const deleteJErr = 'This journal could not be deleted';
-        const deleteURL = `http://localhost:3000/journal/${journal.id}`
+        const deleteURL = `${APIURL}journal/${journal.id}`
         try {
             const byeJournal = await fetch (deleteURL, {
                 method: "DELETE",

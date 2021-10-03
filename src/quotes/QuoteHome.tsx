@@ -7,6 +7,7 @@ import {
     SmallReverseButton,
     MyH1
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type QHProps = {
     userToken: string,
@@ -40,7 +41,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
 
     viewMyQuotes = async () => {
         const myQErr = 'Your quotes cannot be viewed at this time';
-        const apiURL = 'http://localhost:3000/quote/mine';
+        const apiURL = `${APIURL}quote/mine`;
         try {
             const res = await fetch (apiURL, {
                 method: "GET",
@@ -65,7 +66,7 @@ export default class QuoteHome extends React.Component<QHProps, QHState> {
         const confirm = prompt("Are you sure you want to delete this quote?", "Yes")
         if (confirm){
             const deleteQErr = 'This quote cannot be deleted at this time';
-            const deleteURL = `http://localhost:3000/quote/${quote.id}`
+            const deleteURL = `${APIURL}quote/${quote.id}`
             try {
                 const byeQuote = await fetch (deleteURL, {
                     method: "DELETE",

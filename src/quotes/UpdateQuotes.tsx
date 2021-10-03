@@ -7,6 +7,7 @@ import {
 import {
     BasicReverseButton,
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 
 type QUProps = {
@@ -37,7 +38,7 @@ export default class QuoteUpdater extends React.Component<QUProps, QUState> {
     handleQUpdate = async () => {
         const updateQErr = 'This quote cannot be updated at this time';
         const updateAlert = this.props.toBeUpdated.quoteBody;
-        const apiURL = `http://localhost:3000/quote/${this.props.toBeUpdated.id}`;
+        const apiURL = `${APIURL}quote/${this.props.toBeUpdated.id}`;
         const qEditBody = {
             Quote: {
                 quoteBody: this.state.quoteToUpdate

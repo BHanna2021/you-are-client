@@ -3,6 +3,7 @@ import {
     Label,
     CreateButton
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type QCreateProps = {
     creatorToken: string,
@@ -28,7 +29,7 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
 
     handleQCreate = async () => {
         const qCreateErr = 'This quote cannot be created at this time';
-        const apiURL = 'http://localhost:3000/quote/';
+        const apiURL = `${APIURL}quote/`;
         console.log(apiURL)
         const qCreateBody = {
             Quote: {
@@ -55,7 +56,7 @@ export default class QuoteCreator extends React.Component<QCreateProps, QCreateS
 
     handleAdQCreate = async () => {
         const adQCreateErr = 'This quote cannot be created at this time';
-        const apiURL = 'http://localhost:3000/quote/add';
+        const apiURL = `${APIURL}quote/add`;
         const qCreateBody = {
             Quote: {
                 quoteBody: this.state.quoteBody,

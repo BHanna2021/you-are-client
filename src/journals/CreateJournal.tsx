@@ -4,6 +4,7 @@ import {
     Label,
     CreateButton
 } from '../styles/style';
+import APIURL from '../helpers/environment';
 
 type JCreateProps = {
     creatorToken: string
@@ -26,7 +27,7 @@ export default class CreateJournal extends React.Component<JCreateProps, JCreate
 
     handleJCreate = async () => {
         const jCreateErr = 'This journal could not be created';
-        const apiURL = 'http://localhost:3000/journal/';
+        const apiURL = `${APIURL}journal/`;
         const jCreateBody = {
             Journal: {
                 journalBody: this.state.journalBody,
